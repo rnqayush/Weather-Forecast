@@ -5,12 +5,14 @@ import GetLocation from 'react-native-get-location'
 import ForecastList from '../components/ForecastList'
 import Geocoder from 'react-native-geocoder';
 
+import { connect } from 'react-redux'
 
+import * as actions from '../redux/action/dataAction'
 
 
 const width= Dimensions.get('window').width
 const height= Dimensions.get('window').height
-const MainScreen=()=>{
+const MainScreen=(props)=>{
     const [data,setData]=useState()
     const [loading,setLoading]=useState(true)
     const [locality,setLocality]=useState()
@@ -34,7 +36,7 @@ const fetch = ()=>{
     })
     .then( async location => {
         
-        console.log(location)
+        /* console.log(location) */
         const api = create({
             baseURL: 'https://api.github.com',
             headers: { Accept: 'application/vnd.github.v3+json' },
@@ -69,12 +71,13 @@ const fetch = ()=>{
 const set=(res)=>{
     setData(res.data)
     setLoading(false)
+    props.addData(res.data)
 }
 
 
 
 
-loading?(null):(console.log(data.daily))
+/* loading?(null):(console.log(data.daily)) */
 
 
 
@@ -106,4 +109,10 @@ loading?(null):(console.log(data.daily))
 }
 
 
-export default MainScreen
+const mapDispatchTOProps=(dispatch)=>{
+    return{
+        addData:(data)=>dispatch(actions.addData(data))
+    }
+}
+
+export default connect(null,mapDispatchTOProps)(MainScreen)

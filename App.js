@@ -23,15 +23,34 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import MainScreen from './screens/MainScreen';
 
+// redux
+
+import {Provider} from 'react-redux'
+import store from './redux/store'
+
+
+
+const Stack = createStackNavigator();
+
 const App=()=> {
   return (
-    
+<Provider store={store}>
+<NavigationContainer>
+      <Stack.Navigator screenOptions={{
+    headerShown: false
+  }}>
+        <Stack.Screen name="main" component={MainScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+</Provider>
     
 
-<MainScreen />
+
    
     
       
