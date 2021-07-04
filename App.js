@@ -32,6 +32,7 @@ import MainScreen from './screens/MainScreen';
 
 import {Provider} from 'react-redux'
 import store from './redux/store'
+import Error from './screens/Error';
 
 
 
@@ -45,6 +46,8 @@ const App=()=> {
     headerShown: false
   }}>
         <Stack.Screen name="main" component={MainScreen} />
+        <Stack.Screen name="error" component={Error} />
+        
       </Stack.Navigator>
     </NavigationContainer>
 </Provider>
