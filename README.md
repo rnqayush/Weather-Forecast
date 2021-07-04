@@ -1,3 +1,4 @@
+this app uses current location and finds current temp and temp for next five days.
 Below is the output of this app after running on android device.
 
 Note: Android Simulator donot provide current location. so for current location use your device
